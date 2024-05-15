@@ -6,9 +6,21 @@
 
 
 ## 常用命令
-- 配置 `sui client`
-- 检查当前可用的环境别名 `sui client envs`
-- 自定义 RPC 端点添加新别名 `sui client new-env --alias <ALIAS> --rpc <RPC-SERVER-URL>`
+- 配置 Sui 客户端： `sui client`
+- 检查当前可用的环境别名：`sui client envs`
+- 自定义 RPC 端点添加新别名：  
+  `sui client new-env --alias <ALIAS> --rpc <RPC-SERVER-URL>`
   - devnet: https://fullnode.devnet.sui.io:443
   - testnet: https://fullnode.testnet.sui.io:443
-- 切换活动网络 `sui client switch --env <ALIAS>`
+- 切换活动网络： 
+  `sui client switch --env <ALIAS>`
+- 生成新的 Sui 地址
+  `sui client new-address ed25519`，
+  `ed25519` 指定密钥对方案标志的类型，另外两个是 `secp256k1`和`secp256r1`
+- 获取 SUI：`sui client faucet`
+- `sui client gas`
+
+
+
+
+[warn] Client/Server api version mismatch, client api version : 1.24.1, server api version : 1.25.0
