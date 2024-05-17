@@ -1,4 +1,4 @@
-module my_first_package::my_module {
+module my_package::my_module {
 
     // Part 1: These imports are provided by default
     // use sui::object::{Self, UID};
@@ -40,6 +40,7 @@ module my_first_package::my_module {
         self.swords_created
     }
 
+    // Part 5: Public/entry functions (introduced later in the tutorial)
     public fun sword_create(magic: u64, strength: u64, ctx: &mut TxContext): Sword {
         // Create a sword
         Sword {
@@ -49,7 +50,7 @@ module my_first_package::my_module {
         }
     }
 
-    /// Constructor for creating swords
+    // Constructor for creating swords
     public fun new_sword(
         forge: &mut Forge,
         magic: u64,
@@ -63,10 +64,8 @@ module my_first_package::my_module {
             strength: strength,
         }
     }
-    // Part 5: Public/entry functions (introduced later in the tutorial)
 
     // Part 6: Tests
-
     #[test]
     fun test_sword_create() {
         // Create a dummy TxContext for testing
@@ -82,6 +81,7 @@ module my_first_package::my_module {
         // Check if accessor functions return correct values
         assert!(sword.magic() == 42 && sword.strength() == 7, 1);
 
+        // Create a dummy address and transfer the sword
         let dummy_address = @0xCAFE;
         transfer::public_transfer(sword, dummy_address);
     }
