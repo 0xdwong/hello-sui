@@ -20,7 +20,13 @@
 - 获取 SUI：`sui client faucet`
 - `sui client gas`
 
-
+- 创建包 `sui move new my_package`
+- 构建包 `sui move build`
+- 测试 `sui move test`
+- 发布包 `sui client publish`
+  -  --skip-dependency-verification
+- 显示对象 `sui client objects`
+- 
 
 
 [warn] Client/Server api version mismatch, client api version : 1.24.1, server api version : 1.25.0
