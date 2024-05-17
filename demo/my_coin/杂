@@ -1,0 +1,65 @@
+sui client ptb \
+	--assign forge "0x14a429cde33f3cfec81b9dc95609ba0568884bb357063fba133e85112608f01d" \
+	--assign to_address 0xB0B \
+	--move-call 0xe19aec7c9907154bd55f513eeeac2b45993dd923b6d2b865634a18132d94808a::my_module::new_sword forge 3 3 \
+	--assign sword \
+	--transfer-objects "[sword]" to_address \
+	--gas-budget 20000000
+	\
+
+ Created Objects:                                                                                                            │
+│  ┌──                                                                                                                        │
+│  │ ObjectID: 0x0f1826890fe690a87c24c91907f1c8f67577be879da8a14c3b3149d434d7ec29                                             │
+│  │ Sender: 0x2bbcf1aa76f4d2cdd606ce56ca60ad0ac4a099fd8b28cce1c5ce897333429163                                               │
+│  │ Owner: Immutable                                                                                                         │
+│  │ ObjectType: 0x2::coin::CoinMetadata<0x3392be52bd9ce504455ad732dd2f3a32d47f583d920bf6f1b4c396e846960aa9::mycoin::MYCOIN>  │
+│  │ Version: 855033                                                                                                          │
+│  │ Digest: veTadnEBvNtCrtgjj7rczHJ31Nxe2C9cyuhZYAJByAv                                                                      │
+│  └──                                                                                                                        │
+│  ┌──                                                                                                                        │
+│  │ ObjectID: 0x87d85d441d2f7060608659a9ca07d4156e948862e34f5c905ccce319c93b3cae                                             │
+│  │ Sender: 0x2bbcf1aa76f4d2cdd606ce56ca60ad0ac4a099fd8b28cce1c5ce897333429163                                               │
+│  │ Owner: Account Address ( 0x2bbcf1aa76f4d2cdd606ce56ca60ad0ac4a099fd8b28cce1c5ce897333429163 )                            │
+│  │ ObjectType: 0x2::coin::TreasuryCap<0x3392be52bd9ce504455ad732dd2f3a32d47f583d920bf6f1b4c396e846960aa9::mycoin::MYCOIN>   │
+│  │ Version: 855033                                                                                                          │
+│  │ Digest: C4wkYqUQRN9XfVht73y647Ybg25T5fK4MZAnuSxD1wEx                                                                     │
+│  └──                                                                                                                        │
+│  ┌──                                                                                                                        │
+│  │ ObjectID: 0xde0325ef6d3a363495be7dcbb1432e43582d2b843ae97949b8885571cb8dbad9                                             │
+│  │ Sender: 0x2bbcf1aa76f4d2cdd606ce56ca60ad0ac4a099fd8b28cce1c5ce897333429163                                               │
+│  │ Owner: Account Address ( 0x2bbcf1aa76f4d2cdd606ce56ca60ad0ac4a099fd8b28cce1c5ce897333429163 )                            │
+│  │ ObjectType: 0x2::package::UpgradeCap                                                                                     │
+│  │ Version: 855033                                                                                                          │
+│  │ Digest: DNL8UjoEJajmq9oXM2kvhRZ4bjdN2QWDcrtnceNCGxir                                                                     │
+│  └──                                                                                                                        │
+│ Mutated Objects:                                                                                                            │
+│  ┌──                                                                                                                        │
+│  │ ObjectID: 0x9330ad5764960892c5fb66d5fab212638be6b72dbf7483818c1d19f280098537                                             │
+│  │ Sender: 0x2bbcf1aa76f4d2cdd606ce56ca60ad0ac4a099fd8b28cce1c5ce897333429163                                               │
+│  │ Owner: Account Address ( 0x2bbcf1aa76f4d2cdd606ce56ca60ad0ac4a099fd8b28cce1c5ce897333429163 )                            │
+│  │ ObjectType: 0x2::coin::Coin<0x2::sui::SUI>                                                                               │
+│  │ Version: 855033                                                                                                          │
+│  │ Digest: GaDVNACbi6Hk7r853kHaUGQGPG7ZxaFYbxYqFpmr4EZp                                                                     │
+│  └──                                                                                                                        │
+│ Published Objects:                                                                                                          │
+│  ┌──                                                                                                                        │
+│  │ PackageID: 0x3392be52bd9ce504455ad732dd2f3a32d47f583d920bf6f1b4c396e846960aa9                                            │
+│  │ Version: 1                                                                                                               │
+│  │ Digest: EKzYSRSLyUe36RwWRcdCxU1VfTDgotZ377NYUbbGPFtD                                                                     │
+│  │ Modules: mycoin                                                                                                          │
+│  └──                                                                                                                        │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Balance Changes                                                                                   │
+├───────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  ┌──                                                                                              │
+│  │ Owner: Account Address ( 0x2bbcf1aa76f4d2cdd606ce56ca60ad0ac4a099fd8b28cce1c5ce897333429163 )  │
+│  │ CoinType: 0x2::sui::SUI                                                                        │
+│  │ Amount: -13359880                                                                              │
+│  └──                                                                                              │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+
+
+sui client call --function mint --module mycoin --package 0x3392be52bd9ce504455ad732dd2f3a32d47f583d920bf6f1b4c396e846960aa9 --args 0x87d85d441d2f7060608659a9ca07d4156e948862e34f5c905ccce319c93b3cae 10000000000 0x2bbcf1aa76f4d2cdd606ce56ca60ad0ac4a099fd8b28cce1c5ce897333429163 
+--gas-budget <GAS-AMOUNT>
