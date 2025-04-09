@@ -1,0 +1,18 @@
+{
+  "name": "sui-demos",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\""
+  },
+  "dependencies": {
+    "@mysten/sui": "^1.26.1",
+    "@mysten/suins": "^0.7.8",
+    "bip39": "^3.1.0",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3"
+  }
+}
