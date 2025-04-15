@@ -7,6 +7,8 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\""
   },
   "dependencies": {
+    "@cetusprotocol/aggregator-sdk": "^0.6.0",
+    "@mysten/deepbook-v3": "^0.13.6",
     "@mysten/sui": "^1.26.1",
     "@mysten/suins": "^0.7.8",
     "@mysten/walrus": "^0.0.13",
