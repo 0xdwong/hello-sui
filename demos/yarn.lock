@@ -76,6 +76,21 @@
     axios "^1.8.4"
     axios-retry "^3.9.1"
 
+"@mysten/walrus-wasm@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@mysten/walrus-wasm/-/walrus-wasm-0.0.5.tgz#dfdf19788da177f5f6e5587e5a0d1d207561ab74"
+  integrity sha512-KC+G8siV4Jlx54Lhy8CFiNB1b7A7tu2IxjfRD1gVQCLU6VRNkXYjoVcdVGP+5Fo93X7YwGzUofvhidenQpXbbQ==
+
+"@mysten/walrus@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@mysten/walrus/-/walrus-0.0.13.tgz#201e4a57e0912c1ae6c8292dfa0772ffadd7f6ff"
+  integrity sha512-M1e5cuGHhs8v8sjrH0SJszuLiRYsTcoBQ9+d7xaIxCuy0O36dcZNhA0NDcSXmbDjnsVqPZNrORw/2BT3BN7MEQ==
+  dependencies:
+    "@mysten/bcs" "1.6.0"
+    "@mysten/sui" "1.26.1"
+    "@mysten/walrus-wasm" "0.0.5"
+    dataloader "^2.2.3"
+
 "@noble/curves@^1.8.1", "@noble/curves@~1.8.1":
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/@noble/curves/-/curves-1.8.1.tgz#19bc3970e205c99e4bdb1c64a4785706bce497ff"
@@ -153,6 +168,11 @@ combined-stream@^1.0.8:
   integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
   dependencies:
     delayed-stream "~1.0.0"
+
+dataloader@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/dataloader/-/dataloader-2.2.3.tgz#42d10b4913515f5b37c6acedcb4960d6ae1b1517"
+  integrity sha512-y2krtASINtPFS1rSDjacrFgn1dcUuoREVabwlOGOe4SdxenREqwjwjElAdwvbGM7kgZz9a3KVicWR7vcz8rnzA==
 
 delayed-stream@~1.0.0:
   version "1.0.0"
@@ -324,6 +344,11 @@ regenerator-runtime@^0.14.0:
   version "0.14.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.14.1.tgz#356ade10263f685dda125100cd862c1db895327f"
   integrity sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==
+
+undici@^7.7.0:
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-7.7.0.tgz#6cee2db03d6c229d3de0dbe050fbcd4a4c8a3632"
+  integrity sha512-tZ6+5NBq4KH35rr46XJ2JPFKxfcBlYNaqLF/wyWIO9RMHqqU/gx/CLB1Y2qMcgB8lWw/bKHa7qzspqCN7mUHvA==
 
 valibot@^0.36.0:
   version "0.36.0"
