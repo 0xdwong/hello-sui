@@ -4,3 +4,12 @@ language = "en"
 multilingual = false
 src = "src"
 title = "hello-move"
+
+[output.html]
+additional-css = ["custom.css"]
+git-repository-url = "https://github.com/0xdwong/hello-sui"
+edit-url-template = "https://github.com/0xdwong/hello-sui/edit/main/move/booklit/src/{path}"
+
+[output.html.fold]
+enable = true
+level = 1
