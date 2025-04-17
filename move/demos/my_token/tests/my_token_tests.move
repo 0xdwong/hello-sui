@@ -110,4 +110,39 @@ module my_token::my_token_tests {
 
         scenario.end();
     }
+
+    #[test]
+    fun test_mint_event() {
+        // First transaction to create the currency
+        let mut scenario = test_scenario::begin(ADMIN);
+        {
+            // Call the module init function by simulating a package publish
+            init_for_testing(scenario.ctx());
+        };
+
+        // Second transaction to mint tokens
+        scenario.next_tx(ADMIN);
+        {
+            // Get the TreasuryCap that was created in the init
+            let mut treasury_cap = scenario.take_from_sender<TreasuryCap<MY_TOKEN>>();
+
+            // Mint 1000 tokens to user - this will emit the Minted event
+            my_token::mint(&mut treasury_cap, 1000, USER, scenario.ctx());
+            
+            // Return the TreasuryCap to the admin
+            scenario.return_to_sender(treasury_cap);
+        };
+
+        // Check the events
+        let effects = scenario.next_tx(ADMIN);
+        
+        // Verify the number of events
+        assert!(test_scenario::num_user_events(&effects) == 1, 0);
+        
+        // Get and verify the event content
+        // In the Sui testing framework, we cannot directly access event content for verification
+        // But we can verify that at least one event was triggered
+        
+        scenario.end();
+    }
 }

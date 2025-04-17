@@ -2,8 +2,15 @@ module my_token::my_token;
 
 
 use sui::coin::{Self, TreasuryCap};
+use sui::event;
+
 // Token identifier struct, the name is consistent with the module name but all uppercase
 public struct MY_TOKEN has drop {}
+
+public struct Minted has copy, drop {
+    amount: u64,
+    recipient: address,
+}
 
 // Initialization function
 fun init(witness: MY_TOKEN, ctx: &mut TxContext) {
@@ -26,12 +33,6 @@ fun init(witness: MY_TOKEN, ctx: &mut TxContext) {
     transfer::public_transfer(treasury, tx_context::sender(ctx));
 }
 
-// For testing only: initializes the coin
-#[test_only]
-public fun init_for_testing(ctx: &mut TxContext) {
-    init(MY_TOKEN {}, ctx)
-}
-
 // Function to mint tokens
 public fun mint(
     treasury_cap: &mut TreasuryCap<MY_TOKEN>,
@@ -41,6 +42,11 @@ public fun mint(
 ) {
     let coin = coin::mint(treasury_cap, amount, ctx);
     transfer::public_transfer(coin, recipient);
+
+    event::emit(Minted {
+        amount,
+        recipient,
+    });
 }
 
 // Function to burn tokens
@@ -49,4 +55,10 @@ public fun burn(
     coin: coin::Coin<MY_TOKEN>
 ) {
     coin::burn(treasury_cap, coin);
+}
+
+// For testing only: initializes the coin
+#[test_only]
+public fun init_for_testing(ctx: &mut TxContext) {
+    init(MY_TOKEN {}, ctx)
 }
