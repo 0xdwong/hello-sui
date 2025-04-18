@@ -1,6 +1,5 @@
 module my_token::my_token;
 
-
 use sui::coin::{Self, TreasuryCap};
 use sui::event;
 
@@ -18,17 +17,17 @@ fun init(witness: MY_TOKEN, ctx: &mut TxContext) {
     // Parameters: witness, decimal places, symbol, name, description, icon URL, context
     let (treasury, metadata) = coin::create_currency(
         witness,
-        9,  // Decimal places (9 places commonly used for cryptocurrencies)
+        9, // Decimal places (9 places commonly used for cryptocurrencies)
         b"MTK", // Symbol
         b"My Token", // Name
         b"This is my first token on Sui blockchain", // Description
         option::none(), // Icon URL
-        ctx
+        ctx,
     );
-    
+
     // Freeze metadata object to prevent future modifications
     transfer::public_freeze_object(metadata);
-    
+
     // Transfer the token minting authority (Treasury Cap) to the creator
     transfer::public_transfer(treasury, tx_context::sender(ctx));
 }
@@ -38,7 +37,7 @@ public fun mint(
     treasury_cap: &mut TreasuryCap<MY_TOKEN>,
     amount: u64,
     recipient: address,
-    ctx: &mut TxContext
+    ctx: &mut TxContext,
 ) {
     let coin = coin::mint(treasury_cap, amount, ctx);
     transfer::public_transfer(coin, recipient);
@@ -50,10 +49,7 @@ public fun mint(
 }
 
 // Function to burn tokens
-public fun burn(
-    treasury_cap: &mut TreasuryCap<MY_TOKEN>,
-    coin: coin::Coin<MY_TOKEN>
-) {
+public fun burn(treasury_cap: &mut TreasuryCap<MY_TOKEN>, coin: coin::Coin<MY_TOKEN>) {
     coin::burn(treasury_cap, coin);
 }
 
