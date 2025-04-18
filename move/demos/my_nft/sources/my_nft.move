@@ -1,9 +1,8 @@
 module my_nft::my_nft;
 
-
 use std::string;
-use sui::url::{Self, Url};
 use sui::event;
+use sui::url::{Self, Url};
 
 // A basic NFT that can be minted by anyone
 public struct MYNFT has key, store {
@@ -53,7 +52,7 @@ public fun mint_to_sender(
     name: vector<u8>,
     description: vector<u8>,
     url: vector<u8>,
-    ctx: &mut TxContext
+    ctx: &mut TxContext,
 ) {
     let sender = tx_context::sender(ctx);
     let nft = MYNFT {
@@ -78,11 +77,7 @@ public fun transfer(nft: MYNFT, recipient: address, _: &mut TxContext) {
 }
 
 // Update the `description` of `nft` to `new_description`
-public fun update_description(
-    nft: &mut MYNFT,
-    new_description: vector<u8>,
-    _: &mut TxContext
-) {
+public fun update_description(nft: &mut MYNFT, new_description: vector<u8>, _: &mut TxContext) {
     nft.description = string::utf8(new_description)
 }
 
@@ -91,4 +86,3 @@ public fun burn(nft: MYNFT, _: &mut TxContext) {
     let MYNFT { id, name: _, description: _, url: _ } = nft;
     object::delete(id)
 }
-
