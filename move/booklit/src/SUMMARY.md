@@ -3,7 +3,7 @@
 - [基础知识]()
 
   - [Move 语言介绍](./chapter1/what-is-move.md)
-  - [开发环境配置]()
+  - [开发环境配置](./chapter1/development-environment.md)
   - [第一个 Move 程序]()
 
 - [语言核心]()
