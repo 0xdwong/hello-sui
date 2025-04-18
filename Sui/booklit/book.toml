@@ -1,0 +1,6 @@
+[book]
+authors = ["0xdowng"]
+language = "zh-cn"
+multilingual = false
+src = "src"
+title = "hello-move"
