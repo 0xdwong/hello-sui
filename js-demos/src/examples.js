@@ -24,12 +24,12 @@ async function main() {
 
   // await getTransactionBlock();
 
-  // result = await mvr.getAppInfos('hello-world', ['sui', 'pkg']);
+  result = await mvr.lookupAppInfo('memo', ['sui', 'toolkit']);
 
-  // result = await mvr.getAppMetadata('hello-world', ['sui', 'pkg']);
+  // result = await mvr.lookupAppMetadata('memo', ['sui', 'toolkit']);
 
-  result = await mvr.getAppName(
-    '0x25ed6521ce3755cec06285b915277bd9e829fb1addf5f4722ab95c0d3457b3d5'
+  result = await mvr.lookupAppName(
+    '0xdbf724f515fa247ca3e8ca078a498ee7fec2023c464b92632a06eb5d237b1755'
   );
   console.log(result);
 }

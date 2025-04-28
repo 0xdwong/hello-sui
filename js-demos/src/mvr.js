@@ -2,10 +2,10 @@ const { getFullnodeUrl, SuiClient } = require('@mysten/sui/client');
 const config = require('./config');
 const rpc = require('./rpc');
 
-const network = 'mainnet';
-const client = new SuiClient({ url: getFullnodeUrl(network) });
+async function lookuoAppRecord(appName, orgName) {
+  const network = 'mainnet';
+  const client = new SuiClient({ url: getFullnodeUrl(network) });
 
-async function getAppRecord(appName, orgName) {
   // 1. Create Name structure
   const name = {
     type: `${config.MVR.appsNameType}`,
@@ -26,8 +26,8 @@ async function getAppRecord(appName, orgName) {
   return appRecord.error ? null : appRecord;
 }
 
-async function getAppInfos(appName, orgName) {
-  const appRecord = await getAppRecord(appName, orgName);
+async function lookupAppInfo(appName, orgName) {
+  const appRecord = await lookuoAppRecord(appName, orgName);
 
   //  Parse result
   if (!appRecord || appRecord.data?.content?.dataType !== 'moveObject') return;
@@ -57,8 +57,8 @@ async function getAppInfos(appName, orgName) {
   };
 }
 
-async function getAppMetadata(appName, orgName) {
-  const appRecord = await getAppRecord(appName, orgName);
+async function lookupAppMetadata(appName, orgName) {
+  const appRecord = await lookuoAppRecord(appName, orgName);
 
   // Parse result
   if (!appRecord || appRecord.data?.content?.dataType !== 'moveObject') return null;
@@ -73,7 +73,7 @@ async function getAppMetadata(appName, orgName) {
   return metadata;
 }
 
-async function getAppName(packageInfoID) {
+async function lookupAppName(packageInfoID) {
   const packageInfo = await rpc.getObject(packageInfoID);
   const metadata = packageInfo?.content?.fields?.metadata;
   const contents = metadata?.fields?.contents;
@@ -83,7 +83,7 @@ async function getAppName(packageInfoID) {
 }
 
 module.exports = {
-  getAppInfos,
-  getAppMetadata,
-  getAppName,
+  lookupAppInfo,
+  lookupAppMetadata,
+  lookupAppName,
 };
