@@ -24,7 +24,9 @@ async function main() {
 
   // await getTransactionBlock();
 
-  // await mvr.getPackageAddress('hello-world', ['sui', 'pkg']);
+  // result = await mvr.getAppInfos('hello-world', ['sui', 'pkg']);
+
+  // result = await mvr.getAppMetadata('hello-world', ['sui', 'pkg']);
 
   result = await mvr.getAppName(
     '0x25ed6521ce3755cec06285b915277bd9e829fb1addf5f4722ab95c0d3457b3d5'
