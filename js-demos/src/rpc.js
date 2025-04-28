@@ -52,23 +52,30 @@ async function getObject(objectId, network = 'mainnet') {
 
   const objectData = resp.data;
 
-  console.log(objectData);
-
   return objectData;
 }
 
-async function main() {
-  // query address associated with the given domain
-  await resolveNameServiceAddress('buidler.sui', 'mainnet');
+async function getTransactionBlock(txHash, network = 'mainnet') {
+  const suiClient = new SuiClient({ url: getFullnodeUrl(network) });
+  const resp = await suiClient.getTransactionBlock({
+    digest: txHash,
+    options: {
+      showBalanceChanges: true,
+      showEffects: true,
+      showEvents: true,
+      showInput: true,
+      showObjectChanges: true,
+      showRawEffects: true,
+      showRawInput: true,
+    },
+  });
 
-  // query domain name associated with the given address
-  // await resolveNameServiceNames(
-  //   '0xb5f59df8059cccb0f4f9a55e8adf60f0bbc16180cb9ccf5d50e0c1c3e2bd4401',
-  //   'mainnet'
-  // );
-
-  // query object data
-  // await getObject('0x204044eb6e73241a578c90d6560d7ddacfc469620a8c2ab3eddd36b886fef368');
+  return resp;
 }
 
-main();
+module.exports = {
+  resolveNameServiceAddress,
+  resolveNameServiceNames,
+  getObject,
+  getTransactionBlock,
+};
