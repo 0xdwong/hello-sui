@@ -1,0 +1,45 @@
+const { getFullnodeUrl, SuiClient } = require('@mysten/sui/client');
+const config = require('./config');
+
+const network = 'mainnet';
+const client = new SuiClient({ url: getFullnodeUrl(network) });
+
+async function getPackageAddress(appName, orgName) {
+  // 1. Create Name structure
+  const name = {
+    type: `${config.MVR.appsNameType}`,
+    value: {
+      app: [appName], // Application name part
+      org: {
+        labels: orgName, // Organization name part, note that domain labels need to be reversed
+      },
+    },
+  };
+
+  // 2. Query dynamic field
+  const appRecord = await client.getDynamicFieldObject({
+    parentId: config.MVR.appsRegistryTableId, // appsRegistryTableId
+    name: name,
+  });
+
+  // 3. Parse result
+  if (appRecord.data?.content?.dataType === 'moveObject') {
+    const fields = appRecord.data.content.fields.value.fields;
+
+    // Mainnet package address
+    const mainnetPackageAddress = fields.app_info?.fields.package_address;
+
+    // Testnet package address (found in networks field)
+    const networks = fields.networks.fields.contents;
+
+    const testnetInfo = networks.find(x => x.fields.key === config.CHAIN_IDs.TESTNET);
+    const testnetPackageAddress = testnetInfo?.fields.value.fields.package_address;
+
+    console.log('Mainnet Package ID:', mainnetPackageAddress);
+    console.log('Testnet Package ID:', testnetPackageAddress);
+  }
+}
+
+module.exports = {
+  getPackageAddress,
+};
