@@ -68,6 +68,10 @@ MVR 命令行工具允许开发者：
 
 安装 MVR CLI 可以通过 Cargo、预编译二进制文件或源代码构建。
 
+```bash
+cargo install --locked --git https://github.com/mystenlabs/mvr --branch release mvr
+```
+
 添加依赖简单示例：
 
 ```bash
