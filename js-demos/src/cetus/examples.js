@@ -17,8 +17,22 @@ async function findRouters() {
   console.log(routers);
 }
 
+async function getPrice() {
+  const fromCoinType =
+    '0x32a976482bf4154961bf20bfa3567a80122fdf8e8f8b28d752b609d8640f7846::miu::MIU';
+  const fromCoinDecimal = 3;
+
+  const toCoinType = config.MAINNET.USDC_COIN_TYPE;
+  const toCoinDecimal = 6;
+
+  const price = await aggregator.getPrice(fromCoinType, fromCoinDecimal, toCoinType, toCoinDecimal);
+  console.log(price);
+}
+
 async function main() {
-  await findRouters();
+  // await findRouters();
+
+  await getPrice();
 }
 
 main();
