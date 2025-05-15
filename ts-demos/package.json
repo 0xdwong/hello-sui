@@ -1,0 +1,14 @@
+{
+  "name": "sui-ts-demos",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@cetusprotocol/aggregator-sdk": "^0.10.0",
+    "@types/bn.js": "^5.1.6",
+    "bn.js": "^5.2.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "@types/node": "^22.14.1"
+  }
+}
