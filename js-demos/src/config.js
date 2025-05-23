@@ -18,7 +18,28 @@ const CHAIN_IDs = {
   TESTNET: '4c78adac',
 };
 
+const MAINNET_COINS = {
+  SUI: {
+    COIN_TYPE: '0x2::sui::SUI',
+    COIN_DECIMALS: 9,
+  },
+  USDC: {
+    COIN_TYPE: '0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC',
+    COIN_DECIMALS: 6,
+  },
+  DEEP: {
+    COIN_TYPE: '0xdeeb7a4662eec9f2f3def03fb937a663dddaa2e215b8078a284d026b7946c270::deep::DEEP',
+    COIN_DECIMALS: 6,
+  },
+  CETUS: {
+    COIN_TYPE: '0x06864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b::cetus::CETUS',
+    COIN_DECIMALS: 9,
+  },
+};
+
 module.exports = {
+  SUI_COIN_TYPE: '0x2::sui::SUI',
+  MAINNET_COINS,
   MAINNET: {
     SUI_COIN_TYPE: '0x2::sui::SUI',
     SUI_COIN_DECIMALS: 9,
