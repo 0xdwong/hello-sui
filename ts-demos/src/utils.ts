@@ -20,7 +20,7 @@ export async function executeTransaction(
   const builtTx = await tx.build({ client });
 
   const dryRunResult = await client.dryRunTransactionBlock({
-    transactionBlock: await tx.build({ client: client }),
+    transactionBlock: builtTx,
   });
 
   const dryRunSuccess = dryRunResult.effects.status.status === "success";
