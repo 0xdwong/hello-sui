@@ -57,10 +57,23 @@ async function getLiquidityRiskLevel() {
     "0xf91541a57d5dd90ff512610a767e002fcdb536784178b68c665bb1dbdf8f9323";
   const ownerAddress =
     "0x99efdeb464ba8cfabb29e52b4939bd70f16d08f9780fb875e196bfcb0c4a5b6f";
+
+  console.time("getLiquidityRiskLevel");
   const riskLevel = await scallopApi.getLiquidityRiskLevel(
     obligationId,
     ownerAddress
   );
+  console.timeEnd("getLiquidityRiskLevel");
+  console.log("==riskLevel==", riskLevel);
+}
+
+async function getLiquidityRiskLevel2() {
+  const obligationId =
+    "0xf91541a57d5dd90ff512610a767e002fcdb536784178b68c665bb1dbdf8f9323";
+
+  console.time("getLiquidityRiskLevel2");
+  const riskLevel = await scallopApi.getObligationRiskLevel(obligationId);
+  console.timeEnd("getLiquidityRiskLevel2");
   console.log("==riskLevel==", riskLevel);
 }
 
@@ -71,7 +84,7 @@ async function main() {
   // await getLatestObligation();
   // await getUserPortfolio();
   // await getObligationAccount();
-
+  await getLiquidityRiskLevel2();
   await getLiquidityRiskLevel();
 }
 
