@@ -1,5 +1,14 @@
+import { SuiClient, getFullnodeUrl } from "@mysten/sui/client";
 import scallopApi from "../src/scallop";
 import * as eventApi from "../src/events";
+import config from "../src/config";
+import dotenv from "dotenv";
+import { getKeyPairByPrivateKey } from "../src/utils";
+dotenv.config();
+
+const suiClient = new SuiClient({
+  url: getFullnodeUrl("mainnet"),
+});
 
 async function getObligations() {
   const obligations = await scallopApi.getObligations();
@@ -13,7 +22,7 @@ async function getMarket() {
 
 async function getObligation() {
   const obligationId =
-    "0xf91541a57d5dd90ff512610a767e002fcdb536784178b68c665bb1dbdf8f9323";
+    "0x19a1184f03b05692c7e4f973463ec5889fe3ce68dab8d4ae5c8bbd9c47e92adb";
   const obligation = await scallopApi.getObligation(obligationId);
   console.log("==obligationData==", JSON.stringify(obligation));
 }
@@ -77,15 +86,43 @@ async function getLiquidityRiskLevel2() {
   console.log("==riskLevel==", riskLevel);
 }
 
+async function liquidate() {
+  const privateKey = process.env.SUI_PRIVATE_KEY!;
+  const keypair = getKeyPairByPrivateKey(privateKey);
+
+  const obligationId =
+    "0xf91541a57d5dd90ff512610a767e002fcdb536784178b68c665bb1dbdf8f9323";
+
+  // Debt type: USDC (what was borrowed)
+  const debtCoinType = config.MAINNET.USDC_COIN_TYPE;
+  // Collateral type: DEEP (what was collateralized)
+  const collateralCoinType = config.MAINNET.DEEP_COIN_TYPE;
+  const repayAmount = 1 * 10 ** 6; // 1 USDC (6 decimals)
+
+  const params: scallopApi.LiquidateParams = {
+    obligation: obligationId,
+    debtCoinType,
+    collateralCoinType,
+    repayAmount,
+  };
+
+  const result = await scallopApi.liquidate(suiClient, keypair, params);
+  console.log("==result==", result);
+}
+
 async function main() {
   // await getObligations();
   // await getMarket();
-  // await getObligation();
+  await getObligation();
   // await getLatestObligation();
   // await getUserPortfolio();
   // await getObligationAccount();
-  await getLiquidityRiskLevel2();
-  await getLiquidityRiskLevel();
+  // await getLiquidityRiskLevel2();
+  // await getLiquidityRiskLevel();
+
+  // await liquidate();
+
+  // await scallopApi.getAllAddresses();
 }
 
 main();
