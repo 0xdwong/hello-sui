@@ -9,6 +9,28 @@ export function getKeyPairByPrivateKey(privateKey: string): Ed25519Keypair {
   return Ed25519Keypair.fromSecretKey(secretKey);
 }
 
+export async function dryRunTransaction(
+  client: SuiClient,
+  tx: Transaction,
+  signer: Ed25519Keypair
+) {
+  tx.setGasBudget(50000000);
+  tx.setSender(signer.toSuiAddress());
+
+  const builtTx = await tx.build({ client });
+
+  const dryRunResult = await client.dryRunTransactionBlock({
+    transactionBlock: builtTx,
+  });
+
+  const dryRunSuccess = dryRunResult.effects.status.status === "success";
+
+  console.log(`dryRunSuccess: ${dryRunSuccess}`);
+  if (!dryRunSuccess) {
+    throw new Error(`Transaction failed: ${dryRunResult.effects.status.error}`);
+  }
+}
+
 export async function executeTransaction(
   client: SuiClient,
   tx: Transaction,

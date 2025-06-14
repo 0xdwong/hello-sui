@@ -38,6 +38,9 @@ const config = {
     CETUS_COIN_TYPE:
       "0x06864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b::cetus::CETUS",
     CETUS_COIN_DECIMALS: 9,
+    DEEP_COIN_TYPE:
+      "0xdeeb7a4662eec9f2f3def03fb937a663dddaa2e215b8078a284d026b7946c270::deep::DEEP",
+    DEEP_COIN_DECIMALS: 6,
   },
   TESTNET: {
     WALRUS_COIN_TYPE:
